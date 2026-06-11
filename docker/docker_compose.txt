@@ -1,0 +1,61 @@
+version: "3.9"
+
+# Run All Services
+services:
+
+  # Run Service
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: simplybyte
+      MYSQL_DATABASE: simplybytedb
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - "3307:3306"
+    networks:
+      - simplybyte
+
+  # Run Service
+  backend:
+    image: simplybyte/simplybyte-backend:1.0
+    container_name: simplybyte-backend
+    restart: always
+    depends_on:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/simplybytedb
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: simplybyte
+    ports:
+      - "8090:8090"
+    networks:
+      - simplybyte
+
+# Run Service
+frontend:
+  image: simplybyte/simplybyte-ui:3.1
+  container_name: simplybyte-frontend
+  restart: always
+  depends_on:
+    - backend
+  volumes:
+    - ./config.json:/usr/share/nginx/html/assets/config.json
+  ports:
+    - "80:80"
+  networks:
+    - simplybyte
+
+volumes:
+  mysql_data:
+
+networks:
+  simplybyte:
+     driver:bridge
+
+backend URL
+{
+  "userService": "http://localhost:8090"
+}

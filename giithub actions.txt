@@ -1,0 +1,28 @@
+you need more jenkins servers
+why github actions is better than jenkins
+
+infrastucture---need to install servers to run the job
+
+
+if your running more jobs ---need to install many jenkins server ---time consuming processs
+
+
+but in github actions---no need to buy servers and install
+
+without serever how to build the automation and run
+
+example:
+
+springboot--we need servers to test and build the applications
+
+github actions--so github actions no need buy server--so no zero server cost
+  vm==runner
+
+in github actions ----a runner is a machine(server,vm or container ) that executes the job in workflow .
+
+
+if you have own server--we can use own server for github actions--self hosted servers
+
+
+
+
