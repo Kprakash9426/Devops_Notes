@@ -1,0 +1,37 @@
+exmaple---calculator application
+1)  what i am doing here i am creating calculator application in container 
+
+      so i many peoples able to access now 
+      sudendly what happpen ----more user are coming not to bear the load, so creating one more container---scalup
+
+   now what problem----user are complaning very bad application---very worst
+          so when checking the containers one of container got crashed---so what we to do remove container and will add new container--now application working correctly.
+
+
+     now again what problem ---less user---removing the container---scaling down
+     now more user using ----loading increasing---creating container again--now creating many containers but machine fulled--so creating another machine
+
+now one more problem---one machine has many conatainers and one machine has less containers
+
+so what i am doing now manually distrubting the between the machines
+
+now creating new container need to check which machine having less container --there nned to create a container--but here only 6 conatiner so no problem manually we can do
+
+
+
+but realtime sceanario many conatianer need to create--example more than 20---manuall distriburtion is time consuming vey diffuclt--minimum 5 members need to monitor 24/7
+
+
+now to solve this manger call--ask one person to watch24hrs---
+     now one container crashing so what he do remove the conatainer and add new one---self healing
+     more usercoming in---scalup
+     less user coming --scaldown
+     handling both scalup and scaldown we call us --auto scalling
+
+
+
+so all this work done by who----kubernetes---that why its famous world fully--all handleed by kubernetes how he is doing all work as single person will see now..in architechure.
+
+
+
+    
