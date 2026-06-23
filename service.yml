@@ -5,11 +5,13 @@ metadata:
   name: calculator-service
 
 spec:
+
   selector:
-    app: calculator
+    project: calculator
 
   ports:
-  - port: 80
-    targetPort: 5000
+    - protocol: TCP
+      port: 80
+      targetPort: 5000
 
   type: ClusterIP

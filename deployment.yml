@@ -1,26 +1,36 @@
 apiVersion: apps/v1
-kind: ReplicaSet
+kind: Deployment
 
 metadata:
-  name: calculator-app-replicaset
+  name: calculator-app-deployment
   labels:
     app: calculator-app
 
 spec:
   replicas: 3
+
+  strategy:
+    type: RollingUpdate
+
   selector:
     matchLabels:
       app: calculator-app
+
   template:
     metadata:
       labels:
         app: calculator-app
+
     spec:
       containers:
-        - name: simply-byte-calculator
-          image: simplebyte/simplybyte-calculator:1.0
-          ports:
-            - containerPort: 5000
+      - name: calculator-app
+        image: simplebyte/simplybyte-calculator:3.0
+        ports:
+        - containerPort: 5000
+        envFrom:
+        - configMapRef:
+            name: simplybyte-configmap
+
 ---
 apiVersion: v1
 kind: Service
@@ -32,9 +42,12 @@ metadata:
 
 spec:
   type: NodePort
+
   selector:
     app: calculator-app
+
   ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 5000
+  - protocol: TCP
+    port: 80
+    targetPort: 5000
+    nodePort: 30080
