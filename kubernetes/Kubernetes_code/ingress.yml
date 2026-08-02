@@ -1,0 +1,46 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+
+metadata:
+  name: app-ingress
+
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+
+spec:
+  ingressClassName: nginx
+
+  tls:
+    - hosts:
+        - simplybyte.com
+      secretName: app-tls
+
+  defaultBackend:
+    service:
+      name: simplybyte-frontend
+      port:
+        number: 80
+
+  rules:
+    - host: simplybyte.com
+
+      http:
+        paths:
+
+          - path: /backend
+            pathType: Prefix
+
+            backend:
+              service:
+                name: simplybyte-backend
+                port:
+                  number: 8090
+
+          - path: /frontend
+            pathType: Prefix
+
+            backend:
+              service:
+                name: simplybyte-frontend
+                port:
+                  number: 80
