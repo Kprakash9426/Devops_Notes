@@ -1,0 +1,7 @@
+The fundamental commands to initialize a repository, add files, commit changes, check status and save work in Git.
+
+Git init
+Git add
+Git commit
+Git status
+Save a File in Git
